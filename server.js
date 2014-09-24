@@ -14,7 +14,7 @@ var database = require('./config/database');
 
 // Configuration
 database.connect();
-	// passport
+require('./config/passport')(passport);
 
 // Setup express
 app.use(morgan('dev'));
