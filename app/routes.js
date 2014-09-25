@@ -23,18 +23,43 @@ module.exports = function(app, passport) {
     failureFlash: true
   }));
 
+  // Logout
+  app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+  });
+
   // Profiles
   app.get('/profile', isLoggedIn, function(req, res) {
+    console.dir(req.user);
     res.render('profile.jade', {
       user: req.user
     });
   });
 
-  // Logout
-  app.get('/logout', function(req, res) {
-    req.logout();
-    req.redirect('/');
-  });
+  // Facebook
+  app.get('/auth/facebook', passport.authenticate('facebook', { scope: 'email'}));
+
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+  }));
+
+  // twitter
+  app.get('/auth/twitter', passport.authenticate('twitter'));
+
+  app.get('/auth/twitter/callback', passport.authenticate('twitter', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+  }));
+
+  // Google
+  app.get('/auth/google', passport.authenticate('google', { scope: [ 'profile', 'email' ]}));
+
+  app.get('/auth/google/callback', passport.authenticate('google', {
+    successRedirect: '/profile',
+    failureRedirect: '/'
+  }));
 
 };
 
@@ -43,5 +68,5 @@ function isLoggedIn(req, res, next) {
     return next();
   }
 
-  req.redirect('/');
+  res.redirect('/');
 }

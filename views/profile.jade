@@ -1,3 +1,91 @@
 extends layout
 block content
-  h1 Yea!
+  .page-header.text-center
+    h1
+      span.fa.fa-anchor  Profile Page
+    a.btn.btn-default.btn-sm(href='/logout') Logoout
+
+  .row
+    .col-sm-6
+      .well
+        h3
+          span.fa.fa-user  Local
+        p
+          strong id
+          |: 
+          span= user.id
+          br
+          strong email
+          |: 
+          span= user.local.email
+          br
+          strong password
+          |: 
+          span= user.local.password
+        a.btn.btn-default.btn-sm(href='#') Unlink
+    .col-sm-6
+      .well
+        h3
+          span.fa.fa-facebook  Facebook
+        p
+          strong id
+          |: 
+          span= user.facebook.id
+          br
+          strong token
+          |: 
+          span
+            code Hidden
+          br
+          strong email
+          |: 
+          span= user.facebook.email
+          br
+          strong name
+          |: 
+          span= user.facebook.name
+        a.btn.btn-default.btn-sm(href='#') Unlink
+    .col-sm-6
+      .well
+        h3
+          span.fa.fa-twitter  Twitter
+        p
+          strong id
+          |: 
+          span= user.twitter.id
+          br
+          strong token
+          |: 
+          span
+            code Hidden
+          br
+          strong username
+          |: 
+          span= user.twitter.username
+          br
+          strong displayName
+          |: 
+          span= user.twitter.displayName
+        a.btn.btn-default.btn-sm(href='#') Unlink
+    .col-sm-6
+      .well
+        h3
+          span.fa.fa-twitter  Twitter
+        p
+          strong id
+          |: 
+          span= user.facebook.id
+          br
+          strong token
+          |: 
+          span
+            code Hidden
+          br
+          strong email
+          |: 
+          span= user.facebook.email
+          br
+          strong name
+          |: 
+          span= user.facebook.name
+        a.btn.btn-default.btn-sm(href='#') Unlink
